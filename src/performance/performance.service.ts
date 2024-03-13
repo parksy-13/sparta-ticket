@@ -28,6 +28,13 @@ export class PerformanceService {
     return await this.verifyPerformanceById(performanceId);
   }
 
+  async findPriceByPerformanceId(performanceId: number) {
+    const performance = await this.performanceRepository.findOneBy({
+      performanceId,
+    });
+    return performance.price;
+  }
+
   async create(file: Express.Multer.File) {
     if (!file.originalname.endsWith('.csv')) {
       throw new BadRequestException('CSV 파일만 업로드 가능합니다.');

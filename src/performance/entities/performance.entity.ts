@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 
 import { Hall } from 'src/hall/entities/hall.entity';
+import { Ticket } from 'src/ticket/entities/ticket.entity';
 
 @Entity({
   name: 'performances',
@@ -36,6 +37,6 @@ export class Performance {
   @Column({ type: 'int', name: 'hallId' })
   hallId: number;
 
-  @OneToMany(() => Ticket, (ticket) => tickets.performanceId)
+  @OneToMany(() => Ticket, (ticket) => ticket.performanceId)
   tickets: Ticket[];
 }

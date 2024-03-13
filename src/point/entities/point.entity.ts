@@ -4,24 +4,21 @@ import { Performance } from '../../performance/entities/performance.entity';
 import { User } from '../../user/entities/user.entity';
 
 @Entity({
-  name: 'tickets',
+  name: 'points',
 })
-export class Ticket {
+export class Point {
   @PrimaryGeneratedColumn()
-  ticketId: number;
+  pointId: number;
 
-  @ManyToOne(() => User, (user) => user.tickets)
+  @ManyToOne(() => User, (user) => user.points)
   user: User;
 
   @Column({ type: 'int', name: 'userId' })
   userId: number;
 
-  @Column({ type: 'int', name: 'performanceId' })
-  performanceId: number;
-
   @ManyToOne(() => Performance, (performance) => performance.tickets)
   performance: Performance;
 
-  @Column({ type: 'int', name: 'price' })
-  price: number;
+  @Column({ type: 'int', name: 'performanceId' })
+  performanceId: number;
 }

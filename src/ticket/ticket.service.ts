@@ -1,7 +1,7 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 import { Repository } from 'typeorm';
 
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Ticket } from './entities/ticket.entity';
@@ -19,10 +19,11 @@ export class TicketService {
     });
   }
 
-  async createTicket(userId: number, performanceId: number) {
+  async createTicket(userId: number, performanceId: number, price: number) {
     await this.ticketRepository.save({
       userId,
       performanceId,
+      price,
     });
   }
 }
