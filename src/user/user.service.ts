@@ -20,7 +20,7 @@ export class UserService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async register(email: string, password: string) {
+  async register(email: string, password: string, nickname: string) {
     const existingUser = await this.findByEmail(email);
     if (existingUser) {
       throw new ConflictException(
@@ -32,7 +32,10 @@ export class UserService {
     await this.userRepository.save({
       email,
       password: hashedPassword,
+      nickname,
     });
+
+    return `${nickname}님의 회원가입이 완료되었습니다.`;
   }
 
   async login(email: string, password: string) {
@@ -50,6 +53,7 @@ export class UserService {
 
     const payload = { email, sub: user.userId };
     return {
+      message: '로그인이 완료되었습니다.',
       access_token: this.jwtService.sign(payload),
     };
   }

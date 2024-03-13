@@ -14,7 +14,6 @@ import { Hall } from './team/entities/team.entity';
 import { HallModule } from './team/team.module';
 import { User } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
-import { UserModule } from './user/user.module';
 
 const typeOrmModuleOptions = {
   useFactory: async (

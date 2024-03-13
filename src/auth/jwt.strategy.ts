@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import { UserService } from 'src/user/user.service';
 
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';

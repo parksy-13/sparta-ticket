@@ -31,6 +31,9 @@ export class User {
   @Column({ type: 'enum', enum: Role, default: Role.customer })
   role: Role;
 
-  @OneToMany(() => Ticket, (ticket) => ticket.user)
+  @OneToMany(() => Ticket, (ticket) => ticket.userId)
   tickets: Ticket[];
+
+  @OneToMany(() => Point, (point) => point.userId)
+  points: Point[];
 }
