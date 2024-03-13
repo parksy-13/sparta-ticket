@@ -14,6 +14,10 @@ import { Hall } from './team/entities/team.entity';
 import { HallModule } from './team/team.module';
 import { User } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
+import { PerformanceModule } from './performance/performance.module';
+import { HallModule } from './hall/hall.module';
+import { TicketModule } from './ticket/ticket.module';
+import { PointModule } from './point/point.module';
 
 const typeOrmModuleOptions = {
   useFactory: async (
@@ -53,6 +57,7 @@ const typeOrmModuleOptions = {
     TicketModule,
     PerformanceModule,
     HallModule,
+    PointModule,
   ],
   controllers: [],
   providers: [],
