@@ -4,6 +4,6 @@ import { HallController } from './hall.controller';
 
 @Module({
   providers: [HallService],
-  controllers: [HallController]
+  controllers: [HallController],
 })
 export class HallModule {}

@@ -57,7 +57,7 @@ export class PerformanceService {
         _.isNil(performanceData.hallId)
       ) {
         throw new BadRequestException(
-          'CSV 파일은 name과 description 컬럼을 포함해야 합니다.',
+          'CSV 파일은 title과 description 컬럼을 포함해야 합니다.',
         );
       }
     }
@@ -79,7 +79,7 @@ export class PerformanceService {
       performanceId,
     });
     if (_.isNil(performance)) {
-      throw new NotFoundException('존재하지 않는 팀입니다.');
+      throw new NotFoundException('존재하지 않는 공연입니다.');
     }
 
     return performance;

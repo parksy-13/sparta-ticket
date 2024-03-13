@@ -3,9 +3,10 @@ import {
   Entity,
   OneToMany,
   ManyToOne,
-  JoinColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
+import { Hall } from 'src/hall/entities/hall.entity';
 
 @Entity({
   name: 'performances',
@@ -30,8 +31,10 @@ export class Performance {
   endDate: string;
 
   @ManyToOne(() => Hall, (hall) => hall.performances)
-  @JoinColumn({ name: 'performanceId' })
-  hallId: HallId;
+  hall: Hall;
+
+  @Column({ type: 'int', name: 'hallId' })
+  hallId: number;
 
   @OneToMany(() => Ticket, (ticket) => tickets.performanceId)
   tickets: Ticket[];
