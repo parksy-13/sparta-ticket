@@ -60,6 +60,14 @@ export class PerformanceService {
           'CSV 파일은 title과 description 컬럼을 포함해야 합니다.',
         );
       }
+
+      const intStartDate = parseInt(performanceData.startDate);
+      const intEndDate = parseInt(performanceData.endDate);
+      if (intStartDate > intEndDate) {
+        throw new BadRequestException(
+          '공연이 시작하는 날짜는 공연이 끝나는 날짜보다 빨라야 합니다.',
+        );
+      }
     }
 
     const createPerformanceDtos = performancesData.map((performanceData) => ({
