@@ -1,14 +1,12 @@
 import { User } from 'src/user/entities/user.entity';
 
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 import { TicketDto } from './dto/ticket.dto';
 import { UserInfo } from '../utils/userInfo.decorator';
 import { TicketService } from './ticket.service';
 import { PerformanceService } from '../performance/performance.service';
 
-@UseGuards(AuthGuard('jwt'))
 @Controller('ticket')
 export class TicketController {
   constructor(

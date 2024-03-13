@@ -29,9 +29,8 @@ export class PerformanceService {
   }
 
   async findPriceByPerformanceId(performanceId: number) {
-    const performance = await this.performanceRepository.findOneBy({
-      performanceId,
-    });
+    const performance = await this.verifyPerformanceById(performanceId);
+
     return performance.price;
   }
 
