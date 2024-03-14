@@ -6,17 +6,15 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 import { AuthModule } from './auth/auth.module';
-import { Ticket } from './support-message/entities/support-message.entity';
-import { TicketModule } from './support-message/support-message.module';
-import { Performance } from './team/entities/team.entity';
-import { PerformanceModule } from './team/team.module';
-import { Hall } from './team/entities/team.entity';
-import { HallModule } from './team/team.module';
-import { User } from './user/entities/user.entity';
-import { UserModule } from './user/user.module';
-import { PerformanceModule } from './performance/performance.module';
-import { HallModule } from './hall/hall.module';
+import { Ticket } from './ticket/entities/ticket.entity';
 import { TicketModule } from './ticket/ticket.module';
+import { Performance } from './performance/entities/performance.entity';
+import { PerformanceModule } from './performance/performance.module';
+import { Hall } from './hall/entities/hall.entity';
+import { HallModule } from './hall/hall.module';
+import { User } from './user/entities/user.entity';
+import { Point } from './point/entities/point.entity';
+import { UserModule } from './user/user.module';
 import { PointModule } from './point/point.module';
 
 const typeOrmModuleOptions = {
@@ -30,7 +28,7 @@ const typeOrmModuleOptions = {
     host: configService.get('DB_HOST'),
     port: configService.get('DB_PORT'),
     database: configService.get('DB_NAME'),
-    entities: [User, Performance, Hall, Ticket],
+    entities: [User, Performance, Hall, Ticket, Point],
     synchronize: configService.get('DB_SYNC'),
     logging: true,
   }),

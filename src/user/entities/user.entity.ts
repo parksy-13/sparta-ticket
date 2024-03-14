@@ -1,5 +1,5 @@
-import { Ticket } from 'src/ticket/entities/ticket/entity';
-import { Point } from 'src/point/entities/point/entity';
+import { Ticket } from 'src/ticket/entities/ticket.entity';
+import { Point } from 'src/point/entities/point.entity';
 
 import {
   Column,

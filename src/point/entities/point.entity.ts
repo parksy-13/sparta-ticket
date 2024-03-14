@@ -1,7 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  Timestamp,
+} from 'typeorm';
 
-import { Performance } from '../../performance/entities/performance.entity';
 import { User } from '../../user/entities/user.entity';
+import { Ticket } from '../../ticket/entities/ticket.entity';
 
 @Entity({
   name: 'points',
@@ -16,9 +22,18 @@ export class Point {
   @Column({ type: 'int', name: 'userId' })
   userId: number;
 
-  @ManyToOne(() => Performance, (performance) => performance.tickets)
-  performance: Performance;
+  @Column({ type: 'int', name: 'point', default: 1000000 })
+  point: number;
 
-  @Column({ type: 'int', name: 'performanceId' })
-  performanceId: number;
+  @ManyToOne(() => Ticket, (ticket) => ticket.points)
+  ticket?: Ticket;
+
+  @Column({ type: 'int', name: 'ticketId' })
+  ticketId?: number;
+
+  @Column({ type: 'varchar', name: 'paymentHistory' })
+  paymentHistory?: string;
+
+  @Column({ type: 'timestamp', name: 'payAt' })
+  payAt?: Timestamp;
 }

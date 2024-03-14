@@ -67,6 +67,12 @@ export class PerformanceService {
         );
       }
 
+      if (performanceData.price > 50000) {
+        throw new BadRequestException(
+          '1석의 가격을 5만 포인트를 이하로 설정하세요.',
+        );
+      }
+
       const intStartDate = parseInt(performanceData.startDate);
       const intEndDate = parseInt(performanceData.endDate);
       if (intStartDate > intEndDate) {

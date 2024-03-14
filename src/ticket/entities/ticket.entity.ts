@@ -1,7 +1,14 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  OneToMany,
+} from 'typeorm';
 
 import { Performance } from '../../performance/entities/performance.entity';
 import { User } from '../../user/entities/user.entity';
+import { Point } from '../../point/entities/point.entity';
 
 @Entity({
   name: 'tickets',
@@ -24,4 +31,7 @@ export class Ticket {
 
   @Column({ type: 'int', name: 'price' })
   price: number;
+
+  @OneToMany(() => Point, (point) => point.userId)
+  points: Point[];
 }

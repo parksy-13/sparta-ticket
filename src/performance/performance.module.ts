@@ -10,4 +10,4 @@ import { PerformanceService } from './performance.service';
   providers: [PerformanceService],
   controllers: [PerformanceController],
 })
-export class TeamModule {}
+export class PerformanceModule {}

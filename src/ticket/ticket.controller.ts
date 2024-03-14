@@ -6,12 +6,14 @@ import { TicketDto } from './dto/ticket.dto';
 import { UserInfo } from '../utils/userInfo.decorator';
 import { TicketService } from './ticket.service';
 import { PerformanceService } from '../performance/performance.service';
+import { PointService } from '../point/point.service';
 
 @Controller('ticket')
 export class TicketController {
   constructor(
     private readonly ticketService: TicketService,
     private readonly performanceService: PerformanceService,
+    private readonly pointService: PointService,
   ) {}
 
   @Get(':userId')
@@ -25,5 +27,10 @@ export class TicketController {
     const price =
       await this.performanceService.findPriceByPerformanceId(performanceId);
     await this.ticketService.createTicket(user.userId, performanceId, price);
+    await this.pointService.createPointHistory(
+      user.userId,
+      performanceId,
+      price,
+    );
   }
 }
