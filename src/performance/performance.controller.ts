@@ -10,6 +10,7 @@ import {
   UploadedFile,
   UseGuards,
   UseInterceptors,
+  Body,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 
@@ -28,6 +29,11 @@ export class PerformanceController {
   @Get(':id')
   async findOne(@Param('id') id: number) {
     return await this.performanceService.findOne(id);
+  }
+
+  @Get('search')
+  async search(@Body('title') title: string) {
+    return await this.performanceService.search(title);
   }
 
   @Roles(Role.seller)

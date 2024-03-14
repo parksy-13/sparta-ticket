@@ -34,6 +34,21 @@ export class PerformanceService {
     return performance.price;
   }
 
+  async search(title: string) {
+    const performanceTitles = await this.performanceRepository.find({
+      select: { title: true },
+    });
+
+    const performances = [];
+    performanceTitles.map((performanceTitle) => {
+      if (performanceTitle.title.includes(title)) {
+        performances.push(performanceTitle);
+      }
+    });
+
+    return performances;
+  }
+
   async create(file: Express.Multer.File) {
     if (!file.originalname.endsWith('.csv')) {
       throw new BadRequestException('CSV 파일만 업로드 가능합니다.');
