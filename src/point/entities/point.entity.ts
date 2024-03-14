@@ -28,9 +28,6 @@ export class Point {
   @ManyToOne(() => Ticket, (ticket) => ticket.points)
   ticket?: Ticket;
 
-  @Column({ type: 'int', name: 'ticketId' })
-  ticketId?: number;
-
   @Column({ type: 'varchar', name: 'paymentHistory' })
   paymentHistory?: string;
 
