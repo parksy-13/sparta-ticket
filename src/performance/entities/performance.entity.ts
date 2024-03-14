@@ -22,7 +22,7 @@ export class Performance {
   @Column({ type: 'varchar', nullable: false })
   description: string;
 
-  @Column({ type: 'number', nullable: false })
+  @Column({ type: 'int', nullable: false })
   price: number;
 
   @Column({ type: 'varchar', nullable: false })

@@ -15,7 +15,7 @@ import { Performance } from './entities/performance.entity';
 export class PerformanceService {
   constructor(
     @InjectRepository(Performance)
-    private readonly performanceRepository: Repository<Performance>,
+    private performanceRepository: Repository<Performance>,
   ) {}
 
   async findAll(): Promise<Performance[]> {
