@@ -10,6 +10,6 @@ export class LoginDto {
   password: string;
 
   @IsString()
-  @IsNotEmpty({ message: '비밀번호를 입력해주세요.' })
+  @IsNotEmpty({ message: '닉네임을 입력해주세요.' })
   nickname: string;
 }

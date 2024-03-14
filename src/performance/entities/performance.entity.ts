@@ -1,12 +1,5 @@
-import {
-  Column,
-  Entity,
-  OneToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Hall } from 'src/hall/entities/hall.entity';
 import { Ticket } from 'src/ticket/entities/ticket.entity';
 
 @Entity({
@@ -31,11 +24,8 @@ export class Performance {
   @Column({ type: 'varchar', nullable: false })
   endDate: string;
 
-  @ManyToOne(() => Hall, (hall) => hall.performances)
-  hall: Hall;
-
-  @Column({ type: 'int', name: 'hallId' })
-  hallId: number;
+  @Column({ type: 'varchar', name: 'hall' })
+  hall: string;
 
   @OneToMany(() => Ticket, (ticket) => ticket.performanceId)
   tickets: Ticket[];

@@ -10,8 +10,6 @@ import { Ticket } from './ticket/entities/ticket.entity';
 import { TicketModule } from './ticket/ticket.module';
 import { Performance } from './performance/entities/performance.entity';
 import { PerformanceModule } from './performance/performance.module';
-import { Hall } from './hall/entities/hall.entity';
-import { HallModule } from './hall/hall.module';
 import { User } from './user/entities/user.entity';
 import { Point } from './point/entities/point.entity';
 import { UserModule } from './user/user.module';
@@ -28,7 +26,7 @@ const typeOrmModuleOptions = {
     host: configService.get('DB_HOST'),
     port: configService.get('DB_PORT'),
     database: configService.get('DB_NAME'),
-    entities: [User, Performance, Hall, Ticket, Point],
+    entities: [User, Performance, Ticket, Point],
     synchronize: configService.get('DB_SYNC'),
     logging: true,
   }),
@@ -54,7 +52,6 @@ const typeOrmModuleOptions = {
     UserModule,
     TicketModule,
     PerformanceModule,
-    HallModule,
     PointModule,
   ],
   controllers: [],
