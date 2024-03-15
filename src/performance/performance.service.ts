@@ -49,64 +49,35 @@ export class PerformanceService {
     return performances;
   }
 
-  async create(file: Express.Multer.File) {
-    if (!file.originalname.endsWith('.csv')) {
-      throw new BadRequestException('CSV 파일만 업로드 가능합니다.');
+  async create(
+    title: string,
+    description: string,
+    price: number,
+    startDate: string,
+    endDate: string,
+    hall: string,
+  ) {
+    if (price > 50000) {
+      throw new BadRequestException(
+        '1석의 가격을 5만 포인트를 이하로 설정하세요.',
+      );
     }
 
-    const csvContent = file.buffer.toString();
-
-    let parseResult;
-    try {
-      parseResult = parse(csvContent, {
-        header: true,
-        skipEmptyLines: true,
-      });
-    } catch (error) {
-      throw new BadRequestException('CSV 파싱에 실패했습니다.');
+    const intStartDate = parseInt(startDate);
+    const intEndDate = parseInt(endDate);
+    if (intStartDate > intEndDate) {
+      throw new BadRequestException(
+        '공연이 시작하는 날짜는 공연이 끝나는 날짜보다 빨라야 합니다.',
+      );
     }
-
-    const performancesData = parseResult.data as any[];
-
-    for (const performanceData of performancesData) {
-      if (
-        _.isNil(performanceData.name) ||
-        _.isNil(performanceData.description) ||
-        _.isNil(performanceData.price) ||
-        _.isNil(performanceData.startDate) ||
-        _.isNil(performanceData.endDate) ||
-        _.isNil(performanceData.hallId)
-      ) {
-        throw new BadRequestException(
-          'CSV 파일은 title과 description 컬럼을 포함해야 합니다.',
-        );
-      }
-
-      if (performanceData.price > 50000) {
-        throw new BadRequestException(
-          '1석의 가격을 5만 포인트를 이하로 설정하세요.',
-        );
-      }
-
-      const intStartDate = parseInt(performanceData.startDate);
-      const intEndDate = parseInt(performanceData.endDate);
-      if (intStartDate > intEndDate) {
-        throw new BadRequestException(
-          '공연이 시작하는 날짜는 공연이 끝나는 날짜보다 빨라야 합니다.',
-        );
-      }
-    }
-
-    const createPerformanceDtos = performancesData.map((performanceData) => ({
-      name: performanceData.name,
-      description: performanceData.description,
-      price: performanceData.price,
-      startDate: performanceData.startDate,
-      endDate: performanceData.endDate,
-      hallId: performanceData.hallId,
-    }));
-
-    await this.performanceRepository.save(createPerformanceDtos);
+    await this.performanceRepository.save({
+      title,
+      description,
+      price,
+      startDate,
+      endDate,
+      hall,
+    });
   }
 
   private async verifyPerformanceById(performanceId: number) {

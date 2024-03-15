@@ -3,6 +3,7 @@ import { UserInfo } from 'src/utils/userInfo.decorator';
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
+import { SignupDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
@@ -12,11 +13,11 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  async register(@Body() loginDto: LoginDto) {
+  async register(@Body() signupDto: SignupDto) {
     await this.userService.register(
-      loginDto.email,
-      loginDto.password,
-      loginDto.nickname,
+      signupDto.email,
+      signupDto.password,
+      signupDto.nickname,
     );
   }
 
