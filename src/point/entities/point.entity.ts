@@ -28,9 +28,9 @@ export class Point {
   @ManyToOne(() => Ticket, (ticket) => ticket.points)
   ticket?: Ticket;
 
-  @Column({ type: 'varchar', name: 'paymentHistory' })
+  @Column({ type: 'varchar', name: 'paymentHistory', default: null })
   paymentHistory?: string;
 
-  @Column({ type: 'timestamp', name: 'payAt' })
+  @Column({ type: 'timestamp', name: 'payAt', default: null })
   payAt?: Timestamp;
 }

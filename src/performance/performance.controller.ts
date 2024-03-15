@@ -37,8 +37,7 @@ export class PerformanceController {
   }
 
   @Roles(Role.seller)
-  @Post()
-  @UseInterceptors(FileInterceptor('file'))
+  @Post('create')
   async create(@Body() creaetPerformanceDTO: CreatePerformanceDto) {
     await this.performanceService.create(
       creaetPerformanceDTO.title,
