@@ -3,16 +3,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 import { Role } from 'src/user/types/userRole.type';
 import { CreatePerformanceDto } from './dto/create-performance.dto';
 
-import {
-  Controller,
-  Get,
-  Param,
-  Post,
-  UseGuards,
-  UseInterceptors,
-  Body,
-} from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { Controller, Get, Param, Post, UseGuards, Body } from '@nestjs/common';
 
 import { PerformanceService } from './performance.service';
 

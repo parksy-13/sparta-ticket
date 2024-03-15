@@ -1,6 +1,7 @@
 import { User } from 'src/user/entities/user.entity';
 
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { TicketDto } from './dto/ticket.dto';
 import { UserInfo } from '../utils/userInfo.decorator';
@@ -21,6 +22,7 @@ export class TicketController {
     return await this.ticketService.getTicketsByUserId(userId);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post(':ticketId')
   async createTicket(@UserInfo() user: User, @Body() ticketDto: TicketDto) {
     const performanceId = ticketDto.performanceId;
