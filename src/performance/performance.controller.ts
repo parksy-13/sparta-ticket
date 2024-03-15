@@ -8,7 +8,6 @@ import {
   Get,
   Param,
   Post,
-  UploadedFile,
   UseGuards,
   UseInterceptors,
   Body,
